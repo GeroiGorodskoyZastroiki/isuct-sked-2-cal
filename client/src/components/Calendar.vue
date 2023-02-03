@@ -26,12 +26,7 @@ function createCalendar() {
         let endTime = props.schedule[i]['time']['end'].split(':')
         let weekDay = props.schedule[i]['date']['weekday']
         let byDay = ['MO','TU','WE','TH','FR','SA','SU']
-        let until = endDay[2]+endDay[1]+endDay[0]+'T000000Z'
-        console.log(byDay[weekDay-1])
-        console.log(until)
-        console.log(`FREQ=WEEKLY;BYDAY=${byDay[weekDay-1]};INTERVAL=1;UNTIL=${until}`)
-        console.log([startDay[2], startDay[1], startDay[0], startTime[0], startTime[1]])
-        console.log([startDay[2], startDay[1], startDay[0], endTime[0], endTime[1]])
+        let until = endDay[2]+endDay[1]+endDay[0]+'T235959Z'
         var event = {
             start: [Number(startDay[2]), Number(startDay[1]), Number(startDay[0]), Number(startTime[0]), Number(startTime[1])],
             end: [Number(startDay[2]), Number(startDay[1]), Number(startDay[0]), Number(endTime[0]), Number(endTime[1])],
