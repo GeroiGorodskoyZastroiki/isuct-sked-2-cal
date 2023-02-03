@@ -1,13 +1,20 @@
 <script setup>
 import { ref } from 'vue'
+import { onMounted } from 'vue'
+import { allTeachersSaved } from './teachers';
 const props = defineProps(['schedule'])
 const emit = defineEmits(['schedule'])
 
 let scheduleWithNicks = props.schedule
 let allTeachers = []
-getAllTeachers()
+allTeachers = allTeachersSaved
+//getAllTeachers()
 let teachers = [...new Set(getTeachers())]
 let fullNames = ref(Array(teachers.length).fill(''))
+
+onMounted(() => {
+  setNewNames()
+})
 
 function getTeachers() {
   //console.log(props.schedule)
@@ -46,24 +53,24 @@ function getAllTeachers() {
           setNewNames()
       }
   }
+}
 
-  function setNewNames() {
-    let names = document.getElementsByClassName('name')
-    for (let i = 0; i < names.length; i++) {
-        let surnameAndInitials = names[i].innerHTML.split(' ')
-        let surname = surnameAndInitials[0]
-        let nameInitial = surnameAndInitials[1].split('.')[0]
-        let patronymicInitial = surnameAndInitials[1].split('.')[1]
+function setNewNames() {
+  let names = document.getElementsByClassName('name')
+  for (let i = 0; i < names.length; i++) {
+      let surnameAndInitials = names[i].innerHTML.split(' ')
+      let surname = surnameAndInitials[0]
+      let nameInitial = surnameAndInitials[1].split('.')[0]
+      let patronymicInitial = surnameAndInitials[1].split('.')[1]
 
-        for (let j = 0; j < allTeachers.length; j++) {
-            if (allTeachers[j][0] == surname) {
-                let FIO = allTeachers[j][0] + ' ' + allTeachers[j][1] + ' ' + allTeachers[j][2]
-                fullNames.value[i] = FIO
-                break
-            }
+      for (let j = 0; j < allTeachers.length; j++) {
+        if (allTeachers[j][0] == surname) {
+          let FIO = allTeachers[j][0] + ' ' + allTeachers[j][1] + ' ' + allTeachers[j][2]
+          fullNames.value[i] = FIO
+          break
         }
-        if (fullNames.value[i] == '') fullNames.value[i] = names[i].innerHTML
-    }
+      }
+      if (fullNames.value[i] == '') fullNames.value[i] = names[i].innerHTML
   }
 }
 
@@ -123,11 +130,12 @@ function setName(variant) {
     <pre>
         Ожидайте загрузки ФИО преподавателей, затем дополните ячейки куда не загрузилось полное ФИО (не обязательно)
 
-        Обратите внимание, если в списке есть преподаватели другой подгруппы или "мёртвые души", то вы можете стереть их ФИО, чтобы убрать упоминание о них в расписании
+        Сотрите ФИО преподавателя, если хотите убрать упоминание о нём в расписании
+        (Например: для преподавателей других подгрупп)
     </pre>
     <div v-for="value, key in teachers" class="grid">
       <div class="div-border name">{{ value }}</div>
-      <input class="div-border nick" placeholder="—" v-model="fullNames[key]">
+      <textarea class="div-border nick" placeholder="—" v-model="fullNames[key]"></textarea>
     </div>
     <pre>
         Выберите формат ФИО преподавателей

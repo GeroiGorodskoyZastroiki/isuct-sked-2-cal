@@ -8,7 +8,7 @@ const emit = defineEmits(['schedule'])
 
 function getGroup() {
     inProgress.value = true
-    fetch('http://localhost:8080/https://forms.isuct.ru/timetable/rvuzov')
+    fetch('https://cors-anywhere.herokuapp.com/https://forms.isuct.ru/timetable/rvuzov')
     .then(result => result.json())
     .then((output) => {
         for (let i = 0; i < output['faculties'].length; i++) {
@@ -45,7 +45,7 @@ function getGroup() {
     <button v-if="inProgress === false" @click='getGroup'>Далее</button>
     <pre v-else-if="inProgress === true">
         Запрашиваем данные
-        Ожидайте...
+        Ожидайте... (долго)
     </pre>
 </template>
 
