@@ -8,7 +8,7 @@ const emit = defineEmits(['schedule'])
 
 function getGroup() {
     inProgress.value = true
-    fetch('https://cors-anywhere.herokuapp.com/https://forms.isuct.ru/timetable/rvuzov')
+    fetch('https://isuct-sked-2-cal-production.up.railway.app/https://forms.isuct.ru/timetable/rvuzov')
     .then(result => result.json())
     .then((output) => {
         for (let i = 0; i < output['faculties'].length; i++) {
