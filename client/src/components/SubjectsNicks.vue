@@ -15,7 +15,6 @@ function getSubjects() {
 }
 
 function setNick(event) {
-  console.log(event)
   let actualName = event.target.parentElement.children[0].textContent
   let nick = event.target.parentElement.children[1].value
   if (actualName == nick) return
