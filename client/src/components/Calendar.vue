@@ -31,7 +31,7 @@ function createCalendar() {
             start: [Number(startDay[2]), Number(startDay[1]), Number(startDay[0]), Number(startTime[0]), Number(startTime[1])],
             end: [Number(startDay[2]), Number(startDay[1]), Number(startDay[0]), Number(endTime[0]), Number(endTime[1])],
             title: props.schedule[i]['name'],
-            recurrenceRule: `FREQ=WEEKLY;BYDAY=${byDay[weekDay-1]};INTERVAL=1;UNTIL=${until}`
+            recurrenceRule: `FREQ=WEEKLY;BYDAY=${byDay[weekDay-1]};INTERVAL=2;UNTIL=${until}`
         }
         allPairs.push(event)
     }
