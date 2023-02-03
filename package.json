@@ -1,0 +1,17 @@
+{
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "proxy": "nodemon proxy/proxy.js",
+    "client": "cd client && npm run dev",
+    "build_client": "cd client && npm run build",
+    "dev": "concurrently \"npm run proxy\" \"npm run client\"",
+    "build": "concurrently \"npm run proxy\" \"npm run build_client\""
+  },
+  "dependencies": {
+    "file-saver": "^2.0.5",
+    "ics": "^2.41.0"
+  }
+}

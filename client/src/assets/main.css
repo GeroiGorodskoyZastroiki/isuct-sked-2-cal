@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+}
+
+pre {
+  margin: 0.5rem;
+  font: bold 30px 'Arial'; 
+  text-align: center;
+  width: 26rem;
+  white-space: pre-line;
+}
+
+button {
+  font: bold 20px 'Arial'; 
+  overflow-wrap: normal;
+  background-color: white;
+  height: auto;
+  min-height: 3rem;
+  width: 26rem;
+  border-radius: 15px;
+  border-width: 4px;
+  margin: 0.5rem;
+  padding: 5px;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+}
+
+.newbutton {
+  font: bold 20px 'Arial'; 
+  overflow-wrap: normal;
+  background-color: white;
+  height: auto;
+  min-height: 3rem;
+  width: 15rem;
+  border-radius: 15px;
+  border-width: 4px;
+  margin: 0.5rem;
+  padding: 5px;
+}
+
+.newbutton:hover {
+  text-decoration: line-through;
+}
+
+.crossed {
+  text-decoration: line-through;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  font: bold 20px 'Arial'; 
+  background-color: white;
+  height: 3rem;
+  width: 26rem;
+  border-color: black;
+  border-radius: 15px;
+  border-width: 4px;
+  margin: 0.5rem;
+  padding: 5px;
+  text-align: center;
+}
+
+::placeholder {
+  color: rgb(180, 180, 180);
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  grid-gap: 0.5rem;
+}
+
+.nick {
+  text-align: left;
+  height: auto;
+}
+
+.div-border {
+  display: flex;
+  flex-wrap: wrap;
+  font: bold 20px 'Arial'; 
+  min-height: 3rem;
+  width: 16rem;
+  border-radius: 15px;
+  margin: 0.5rem;
+  align-content: center;
+  border: 4px solid black;
+  padding: 5px;
+}
