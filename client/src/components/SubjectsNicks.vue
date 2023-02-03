@@ -15,11 +15,10 @@ function getSubjects() {
 }
 
 function setNick(event) {
+  console.log(event)
   let actualName = event.path[1].children[0].textContent
   let nick = event.path[1].children[1].value
-  console.log(nick)
   if (actualName == nick) return
-  console.log('aboba')
   nicks[actualName] = nick
 }
 
