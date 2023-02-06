@@ -6,9 +6,9 @@
   "scripts": {
     "proxy": "nodemon proxy/proxy.js",
     "client": "cd client && npm run dev",
-    "build_client": "cd client && npm run build",
     "dev": "concurrently \"npm run proxy\" \"npm run client\"",
-    "build": "concurrently \"npm run proxy\" \"npm run build_client\""
+    "build": "cd proxy && npm install && cd.. && cd client && npm install && npm run build",
+    "preview": "node proxy/proxy.js && cd client && npm run preview"
   },
   "dependencies": {
     "file-saver": "^2.0.5",
