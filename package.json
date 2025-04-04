@@ -8,7 +8,7 @@
     "client": "cd client && npm run dev",
     "dev": "concurrently \"npm run proxy\" \"npm run client\"",
     "build": "cd proxy && npm install && cd.. && cd client && npm install && npm run build",
-    "preview": "node proxy/proxy.js && cd client && npm run preview"
+    "preview": "cd proxy && node proxy.js && cd.. && cd client && npm run preview"
   },
   "dependencies": {
     "file-saver": "^2.0.5",

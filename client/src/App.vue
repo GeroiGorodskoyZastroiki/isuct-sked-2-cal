@@ -13,7 +13,7 @@ let step = ref('')
 let stepQ = ['group', 'subjectsTypes', 'teachersNicks', 'subjectsNicks', 'schema', 'calendar']
 step.value = stepQ.shift()
 
-function updSchedule(modifiedSchedule) {
+function updSchedule(modifiedSchedule) { 
   schedule = modifiedSchedule
   console.log(schedule)
   step.value = stepQ.shift()
