@@ -1,0 +1,19 @@
+# Project
+output/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# VS Code
+.vscode/*
+!.vscode/launch.json
+
+# Ruff
+.ruff_cache/
+
+# uv
+.venv/
+
+# Temp
+~*
