@@ -59,9 +59,13 @@ def fill_lessons_sheet(workbook, schedule):
     row = 3
     for lesson in schedule:
         lessons_sheet[f'A{row}'] = lesson['date']['start']
+        lessons_sheet[f'A{row}'].number_format = '@'
         lessons_sheet[f'B{row}'] = lesson['date']['end']
+        lessons_sheet[f'B{row}'].number_format = '@'
         lessons_sheet[f'C{row}'] = lesson['time']['start']
+        lessons_sheet[f'C{row}'].number_format = '@'
         lessons_sheet[f'D{row}'] = lesson['time']['end']
+        lessons_sheet[f'D{row}'].number_format = '@'
 
         subject_cell_row = find_row_by_value(subjects_sheet, 'A', lesson['subject'])[0]
         lessons_sheet[f'E{row}'] = f'=IF(E2=TRUE, IFERROR(Subjects!A{subject_cell_row}, ""), "")'
