@@ -14,7 +14,7 @@ def create_calendar():
         time_start = lesson['time']['start'].split(':')
         time_end = lesson['time']['end'].split(':')
         week_day = datetime.strptime(lesson['date']['start'], "%d.%m.%Y").weekday()
-        until = datetime(int(notify_date[2]), int(notify_date[1]), int(notify_date[0]))
+        until = datetime(int(notify_date[2]), int(notify_date[1]), int(notify_date[0])+1)
         
         event = Event()
         event.add('summary', lesson['view'])
