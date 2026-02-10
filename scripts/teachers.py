@@ -1,10 +1,10 @@
-import os, requests
+import os, sys, requests
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 
 
 def add_teachers_full_names(schedule):
-    print("Загружаем список преподавателей вуза и ищем полные ФИО...")
+    print("Загружаем список преподавателей ИГХТУ и ищем полные ФИО...")
     
     short_names = list(get_uniq_teachers_names(schedule))
     full_names = find_teachers_full_names(fetch_teachers_info())
@@ -15,6 +15,8 @@ def add_teachers_full_names(schedule):
             lesson['teachers'][i] = {
                 'name': teacher['name'],
                 'full_name': names_dict[teacher['name']]}
+    
+    print("ФИО преподавателей успешно загружены и сопоставлены")
     return schedule
 
 
@@ -38,9 +40,18 @@ def get_uniq_teachers(schedule):
 def fetch_teachers_info():
     load_dotenv()
     url = os.getenv('URL_TEACHERS')
-    response = requests.get(url)
-    response.raise_for_status()
-    return response.text
+    
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.text
+        
+    except requests.exceptions.HTTPError as e:
+        print(f"HTTP ошибка: {e}")
+        sys.exit(1)
+    except requests.exceptions.RequestException as e:
+        print(f"Ошибка: {e}")
+        sys.exit(1)
 
 
 def find_teachers_full_names(teachers_info):

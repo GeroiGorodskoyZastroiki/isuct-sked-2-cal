@@ -2,6 +2,7 @@ from icalendar import Calendar, Event
 from datetime import datetime
 from .excel import load_custom_schedule
 
+
 def create_calendar():
     print("Экспортируем кастомное расписание в календарь...")
     
@@ -22,7 +23,6 @@ def create_calendar():
         event.add('dtend', datetime(int(date_start[2]), int(date_start[1]), int(date_start[0]), int(time_end[0]), int(time_end[1])))
         event.add('rrule', {'freq': 'weekly', 'byweekdaynum': week_day, 'interval': 2, 'until': until})
         cal.add_component(event)
-
 
     notify_date = schedule[0]['date']['end'].split('.')
     if notify_date[1] == "12":
