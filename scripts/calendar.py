@@ -3,7 +3,7 @@ from datetime import datetime
 from .excel import load_custom_schedule
 
 def create_calendar():
-    print("Загружаем кастомное расписание и экспортируем его в календарь...")
+    print("Экспортируем кастомное расписание в календарь...")
     
     cal = Calendar()
 
@@ -14,7 +14,7 @@ def create_calendar():
         time_start = lesson['time']['start'].split(':')
         time_end = lesson['time']['end'].split(':')
         week_day = datetime.strptime(lesson['date']['start'], "%d.%m.%Y").weekday()
-        until = datetime(int(notify_date[2]), int(notify_date[1]), int(notify_date[0])+1)
+        until = datetime(int(notify_date[2]), int(notify_date[1]), int(notify_date[0]), 23, 59, 59)
         
         event = Event()
         event.add('summary', lesson['view'])
@@ -23,12 +23,15 @@ def create_calendar():
         event.add('rrule', {'freq': 'weekly', 'byweekdaynum': week_day, 'interval': 2, 'until': until})
         cal.add_component(event)
 
-    notify_event = Event()
+
     notify_date = schedule[0]['date']['end'].split('.')
-    if notify_date[1] == 12:
+    if notify_date[1] == "12":
         notify_date[1] = 1
+        notify_date[2] = int(notify_date[2]) + 1
     else: 
         notify_date[1] = 9
+
+    notify_event = Event()
     notify_event.add('summary', "Воспользуйтесь isuct-sked-2-cal (см. описание)")
     notify_event.add('description', 'https://github.com/GeroiGorodskoyZastroiki/isuct-sked-2-cal')
     notify_event.add('dtstart', datetime(int(notify_date[2]), int(notify_date[1]), 1))
